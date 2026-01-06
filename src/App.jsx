@@ -9,6 +9,8 @@ function App() {
 
           <h2>Movies</h2>
 
+          <p>I will recommend movies here!</p>
+
       </>
   )
 }
