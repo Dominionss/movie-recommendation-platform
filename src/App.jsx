@@ -11,6 +11,8 @@ function App() {
 
           <p>I will recommend movies here!</p>
 
+          <p>About our platform.</p>
+
       </>
   )
 }
