@@ -13,6 +13,8 @@ function App() {
 
           <p>About our platform.</p>
 
+          <p>What's your favorite movie? </p>
+
       </>
   )
 }
