@@ -17,6 +17,8 @@ function App() {
 
           <p>Yeeeey!</p>
 
+          <p>Leave a review to that movie.</p>
+
       </>
   )
 }
