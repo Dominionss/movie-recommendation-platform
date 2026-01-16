@@ -19,6 +19,8 @@ function App() {
 
           <p>Leave a review to that movie.</p>
 
+          <p>Let's try not to forget about commits!</p>
+
       </>
   )
 }
