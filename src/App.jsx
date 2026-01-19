@@ -21,6 +21,8 @@ function App() {
 
           <p>Let's try not to forget about commits!</p>
 
+          <p>Commit!</p>
+
       </>
   )
 }
