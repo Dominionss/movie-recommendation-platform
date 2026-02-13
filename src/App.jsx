@@ -39,6 +39,8 @@ function App() {
 
             <p>I have lost some progress because i'm depressed!</p>
 
+            <p>Beliefs!</p>
+
         </>
     )
 }
