@@ -41,6 +41,8 @@ function App() {
 
             <p>Beliefs!</p>
 
+            <p>You can do it!</p>
+
         </>
     )
 }
