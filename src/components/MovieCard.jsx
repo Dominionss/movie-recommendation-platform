@@ -1,9 +1,9 @@
 const MovieCard = ({ title, rating, poster, description }) => (
-    <div className="bg-gray-800 rounded-lg shadow-lg hover:scale-105 transition duration-300">
+    <div className="bg-gray-800 rounded-2xl shadow-lg hover:shadow-[0_0_20px_#7551e0] hover:shadow-2xl hover:scale-102 transition duration-300">
         <img
             src={poster}
             alt={title}
-            className="w-full h-56 object-cover rounded-t-lg"
+            className="w-full h-160 object-cover rounded-t-lg"
         />
         <div className="p-4">
             <h3 className="text-white font-bold text-lg truncate">{title}</h3>
