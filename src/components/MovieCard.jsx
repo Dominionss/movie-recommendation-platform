@@ -1,16 +1,38 @@
-const MovieCard = ({ title, rating, poster, description }) => (
-    <div className="bg-gray-800 rounded-2xl shadow-lg hover:shadow-[0_0_20px_#7551e0] hover:shadow-2xl hover:scale-102 transition duration-300">
-        <img
-            src={poster}
-            alt={title}
-            className="w-full h-160 object-cover rounded-t-lg"
-        />
-        <div className="p-4">
-            <h3 className="text-white font-bold text-lg truncate">{title}</h3>
-            <p className="text-gray-400 text-sm mt-1 line-clamp-2">{description}</p>
-            <span className="text-yellow-400 font-bold mt-2 block">⭐ {rating}</span>
-        </div>
-    </div>
-);
+const MovieCard = ({ id, title, rating, poster, description, onSelect }) => {
+    const moviePath = `/movies/${id}`;
+
+    const handleClick = (event) => {
+        if (event.metaKey || event.altKey || event.ctrlKey || event.shiftKey) {
+            return;
+        }
+
+        if (!onSelect) {
+            return;
+        }
+
+        event.preventDefault();
+        onSelect(id);
+    };
+
+    return (
+        <a
+            href={moviePath}
+            onClick={handleClick}
+            aria-label={`View details for ${title}`}
+            className="block bg-gray-800 rounded-2xl shadow-lg hover:shadow-[0_0_20px_#7551e0] hover:shadow-2xl hover:scale-102 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 overflow-hidden"
+        >
+            <img
+                src={poster}
+                alt={title}
+                className="w-full h-160 object-cover"
+            />
+            <div className="p-4">
+                <h3 className="text-white font-bold text-lg truncate">{title}</h3>
+                <p className="text-gray-400 text-sm mt-1 line-clamp-2">{description}</p>
+                <span className="text-yellow-400 font-bold mt-2 block">Rating {rating}</span>
+            </div>
+        </a>
+    );
+};
 
 export default MovieCard;
