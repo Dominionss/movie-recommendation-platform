@@ -81,7 +81,7 @@ const UserCabinet = ({
                                     key={movie.id}
                                     {...movie}
                                     isFavorite
-                                    isLoggedIn
+                                    favoriteButtonLabel="Remove"
                                     onSelect={(movieId) => onNavigate(`/movies/${movieId}`)}
                                     onToggleFavorite={onToggleFavorite}
                                 />

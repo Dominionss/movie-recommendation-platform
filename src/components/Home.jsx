@@ -22,7 +22,6 @@ const Home = ({
         <Description />
         <main className="flex-grow">
             <MovieGrid
-                currentUser={currentUser}
                 favoriteIds={favoriteIds}
                 movies={movies}
                 onMovieSelect={(movieId) => onNavigate(`/movies/${movieId}`)}

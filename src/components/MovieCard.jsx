@@ -5,9 +5,9 @@ const MovieCard = ({
     poster,
     description,
     isFavorite,
-    isLoggedIn,
     onSelect,
     onToggleFavorite,
+    favoriteButtonLabel,
 }) => {
     const moviePath = `/movies/${id}`;
 
@@ -28,9 +28,9 @@ const MovieCard = ({
         onToggleFavorite?.(id);
     };
 
-    const favoriteLabel = isLoggedIn
-        ? isFavorite ? 'Saved' : 'Favorite'
-        : 'Log in';
+    const favoriteLabel = favoriteButtonLabel ?? (
+        isFavorite ? 'Remove' : 'Add to favorite'
+    );
 
     return (
         <article className="relative bg-gray-800 rounded-lg shadow-lg hover:shadow-[0_0_20px_#7551e0] hover:shadow-2xl hover:scale-102 transition duration-300 overflow-hidden">

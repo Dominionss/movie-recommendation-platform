@@ -2,31 +2,45 @@ import { useState } from 'react';
 import Footer from './Footer.jsx';
 import Navbar from './Navbar.jsx';
 
-const Login = ({
+const Register = ({
     currentUser,
     favoriteCount,
-    onLogin,
     onLogout,
     onNavigate,
+    onRegister,
     pendingFavoriteId,
 }) => {
-    const [email, setEmail] = useState(currentUser?.email ?? '');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        const trimmedName = name.trim();
         const trimmedEmail = email.trim();
         const trimmedPassword = password.trim();
 
-        if (!trimmedEmail || !trimmedPassword) {
-            setError('Enter email and password.');
+        if (!trimmedName || !trimmedEmail || !trimmedPassword) {
+            setError('Fill in all fields.');
             return;
         }
 
-        const result = onLogin({
+        if (trimmedPassword.length < 4) {
+            setError('Password must be at least 4 characters.');
+            return;
+        }
+
+        if (trimmedPassword !== confirmPassword.trim()) {
+            setError('Passwords do not match.');
+            return;
+        }
+
+        const result = onRegister({
             email: trimmedEmail,
+            name: trimmedName,
             password: trimmedPassword,
         });
 
@@ -47,10 +61,10 @@ const Login = ({
                 <section className="mx-auto grid max-w-5xl gap-8 md:grid-cols-[1fr_420px] md:items-center">
                     <div>
                         <p className="text-sm font-semibold uppercase text-red-400">
-                            User cabinet
+                            New user
                         </p>
                         <h2 className="mt-3 text-4xl font-bold text-white md:text-5xl">
-                            Sign in to manage your movies.
+                            Create your movie cabinet.
                         </h2>
                     </div>
 
@@ -60,15 +74,27 @@ const Login = ({
                     >
                         {pendingFavoriteId && (
                             <p className="mb-4 rounded-lg bg-red-500/10 px-4 py-3 text-sm font-semibold text-red-200">
-                                Sign in to save that movie.
+                                Create an account to save that movie.
                             </p>
                         )}
 
-                        <label className="block text-sm font-semibold text-gray-200" htmlFor="email">
+                        <label className="block text-sm font-semibold text-gray-200" htmlFor="name">
+                            Name
+                        </label>
+                        <input
+                            id="name"
+                            type="text"
+                            value={name}
+                            onChange={(event) => setName(event.target.value)}
+                            className="mt-2 w-full rounded-lg border border-gray-700 bg-gray-900 px-4 py-3 text-white outline-none transition focus:border-red-400 focus:ring-2 focus:ring-red-400/40"
+                            autoComplete="name"
+                        />
+
+                        <label className="mt-5 block text-sm font-semibold text-gray-200" htmlFor="register-email">
                             Email
                         </label>
                         <input
-                            id="email"
+                            id="register-email"
                             type="text"
                             inputMode="email"
                             value={email}
@@ -77,16 +103,28 @@ const Login = ({
                             autoComplete="email"
                         />
 
-                        <label className="mt-5 block text-sm font-semibold text-gray-200" htmlFor="password">
+                        <label className="mt-5 block text-sm font-semibold text-gray-200" htmlFor="register-password">
                             Password
                         </label>
                         <input
-                            id="password"
+                            id="register-password"
                             type="password"
                             value={password}
                             onChange={(event) => setPassword(event.target.value)}
                             className="mt-2 w-full rounded-lg border border-gray-700 bg-gray-900 px-4 py-3 text-white outline-none transition focus:border-red-400 focus:ring-2 focus:ring-red-400/40"
-                            autoComplete="current-password"
+                            autoComplete="new-password"
+                        />
+
+                        <label className="mt-5 block text-sm font-semibold text-gray-200" htmlFor="confirm-password">
+                            Confirm password
+                        </label>
+                        <input
+                            id="confirm-password"
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(event) => setConfirmPassword(event.target.value)}
+                            className="mt-2 w-full rounded-lg border border-gray-700 bg-gray-900 px-4 py-3 text-white outline-none transition focus:border-red-400 focus:ring-2 focus:ring-red-400/40"
+                            autoComplete="new-password"
                         />
 
                         {error && (
@@ -99,14 +137,14 @@ const Login = ({
                             type="submit"
                             className="mt-6 w-full rounded-lg bg-red-500 px-5 py-3 font-bold text-white transition hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-gray-950"
                         >
-                            Sign in
+                            Create user
                         </button>
                         <button
                             type="button"
-                            onClick={() => onNavigate('/register')}
+                            onClick={() => onNavigate('/login')}
                             className="mt-3 w-full rounded-lg border border-gray-700 px-5 py-3 font-bold text-gray-100 transition hover:border-red-400 hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-gray-950"
                         >
-                            Create account
+                            Back to login
                         </button>
                     </form>
                 </section>
@@ -116,4 +154,4 @@ const Login = ({
     );
 };
 
-export default Login;
+export default Register;

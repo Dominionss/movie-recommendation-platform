@@ -1,7 +1,6 @@
 import MovieCard from './MovieCard.jsx';
 
 const MovieGrid = ({
-    currentUser,
     favoriteIds,
     movies,
     onMovieSelect,
@@ -15,7 +14,6 @@ const MovieGrid = ({
                     key={movie.id}
                     {...movie}
                     isFavorite={favoriteIds.includes(movie.id)}
-                    isLoggedIn={Boolean(currentUser)}
                     onSelect={onMovieSelect}
                     onToggleFavorite={onToggleFavorite}
                 />

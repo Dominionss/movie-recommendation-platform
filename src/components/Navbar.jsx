@@ -48,9 +48,14 @@ const Navbar = ({ currentUser, favoriteCount, onLogout, onNavigate }) => {
                             Log out
                         </button>
                     ) : (
-                        <a href="/login" onClick={handleNavigation('/login')} className="hover:text-red-400">
-                            Login
-                        </a>
+                        <div className="flex gap-4">
+                            <a href="/login" onClick={handleNavigation('/login')} className="hover:text-red-400">
+                                Login
+                            </a>
+                            <a href="/register" onClick={handleNavigation('/register')} className="hover:text-red-400">
+                                Register
+                            </a>
+                        </div>
                     )}
                 </li>
             </ul>
