@@ -1,5 +1,5 @@
-const Navbar = ({ onNavigate }) => {
-    const handleHomeClick = (event) => {
+const Navbar = ({ currentUser, favoriteCount, onLogout, onNavigate }) => {
+    const handleNavigation = (path) => (event) => {
         if (event.metaKey || event.altKey || event.ctrlKey || event.shiftKey) {
             return;
         }
@@ -9,22 +9,50 @@ const Navbar = ({ onNavigate }) => {
         }
 
         event.preventDefault();
-        onNavigate('/');
+        onNavigate(path);
     };
 
     return (
-        <nav className="bg-gray-900 text-white px-8 py-4 flex items-center justify-between">
-            <a href="/" onClick={handleHomeClick} className="text-xl font-bold text-red-500">
+        <nav className="bg-gray-900 text-white px-6 py-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <a
+                href="/"
+                onClick={handleNavigation('/')}
+                className="text-xl font-bold text-red-500"
+            >
                 MovieApp
             </a>
-            <ul className="flex gap-6">
+
+            <ul className="flex flex-wrap items-center gap-4 text-sm font-semibold sm:text-base">
                 <li>
-                    <a href="/" onClick={handleHomeClick} className="hover:text-red-400">
+                    <a href="/" onClick={handleNavigation('/')} className="hover:text-red-400">
                         Home
                     </a>
                 </li>
-                <li className="hover:text-red-400 cursor-pointer">Top Rated</li>
-                <li className="hover:text-red-400 cursor-pointer">Favorites</li>
+                <li>
+                    <a href="/cabinet" onClick={handleNavigation('/cabinet')} className="hover:text-red-400">
+                        Favorites {favoriteCount}
+                    </a>
+                </li>
+                <li>
+                    <a href="/cabinet" onClick={handleNavigation('/cabinet')} className="hover:text-red-400">
+                        Cabinet
+                    </a>
+                </li>
+                <li>
+                    {currentUser ? (
+                        <button
+                            type="button"
+                            onClick={onLogout}
+                            className="hover:text-red-400"
+                        >
+                            Log out
+                        </button>
+                    ) : (
+                        <a href="/login" onClick={handleNavigation('/login')} className="hover:text-red-400">
+                            Login
+                        </a>
+                    )}
+                </li>
             </ul>
         </nav>
     );
