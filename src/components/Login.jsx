@@ -5,6 +5,7 @@ import Navbar from './Navbar.jsx';
 const Login = ({
     currentUser,
     favoriteCount,
+    isAdmin,
     onLogin,
     onLogout,
     onNavigate,
@@ -40,6 +41,7 @@ const Login = ({
             <Navbar
                 currentUser={currentUser}
                 favoriteCount={favoriteCount}
+                isAdmin={isAdmin}
                 onLogout={onLogout}
                 onNavigate={onNavigate}
             />

@@ -1,11 +1,15 @@
 import Footer from './Footer.jsx';
+import MovieComments from './MovieComments.jsx';
 import Navbar from './Navbar.jsx';
 
 const MovieDetails = ({
+    comments,
     currentUser,
     favoriteCount,
+    isAdmin,
     isFavorite,
     movie,
+    onAddComment,
     onLogout,
     onNavigate,
     onToggleFavorite,
@@ -18,6 +22,7 @@ const MovieDetails = ({
                 <Navbar
                     currentUser={currentUser}
                     favoriteCount={favoriteCount}
+                    isAdmin={isAdmin}
                     onLogout={onLogout}
                     onNavigate={onNavigate}
                 />
@@ -55,6 +60,7 @@ const MovieDetails = ({
             <Navbar
                 currentUser={currentUser}
                 favoriteCount={favoriteCount}
+                isAdmin={isAdmin}
                 onLogout={onLogout}
                 onNavigate={onNavigate}
             />
@@ -129,6 +135,13 @@ const MovieDetails = ({
                         </section>
                     </div>
                 </article>
+                <MovieComments
+                    comments={comments}
+                    currentUser={currentUser}
+                    movieId={movie.id}
+                    onAddComment={onAddComment}
+                    onNavigate={onNavigate}
+                />
             </main>
             <Footer />
         </div>

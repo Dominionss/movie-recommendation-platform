@@ -6,6 +6,7 @@ const UserCabinet = ({
     currentUser,
     favoriteCount,
     favoriteMovies,
+    isAdmin,
     onLogout,
     onNavigate,
     onToggleFavorite,
@@ -16,6 +17,7 @@ const UserCabinet = ({
                 <Navbar
                     currentUser={currentUser}
                     favoriteCount={favoriteCount}
+                    isAdmin={isAdmin}
                     onLogout={onLogout}
                     onNavigate={onNavigate}
                 />
@@ -46,6 +48,7 @@ const UserCabinet = ({
             <Navbar
                 currentUser={currentUser}
                 favoriteCount={favoriteCount}
+                isAdmin={isAdmin}
                 onLogout={onLogout}
                 onNavigate={onNavigate}
             />

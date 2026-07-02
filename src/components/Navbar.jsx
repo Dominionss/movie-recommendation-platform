@@ -1,4 +1,4 @@
-const Navbar = ({ currentUser, favoriteCount, onLogout, onNavigate }) => {
+const Navbar = ({ currentUser, favoriteCount, isAdmin, onLogout, onNavigate }) => {
     const handleNavigation = (path) => (event) => {
         if (event.metaKey || event.altKey || event.ctrlKey || event.shiftKey) {
             return;
@@ -38,6 +38,13 @@ const Navbar = ({ currentUser, favoriteCount, onLogout, onNavigate }) => {
                         Cabinet
                     </a>
                 </li>
+                {isAdmin && (
+                    <li>
+                        <a href="/admin" onClick={handleNavigation('/admin')} className="hover:text-red-400">
+                            Admin
+                        </a>
+                    </li>
+                )}
                 <li>
                     {currentUser ? (
                         <button

@@ -7,6 +7,7 @@ const Home = ({
     currentUser,
     favoriteCount,
     favoriteIds,
+    isAdmin,
     movies,
     onLogout,
     onNavigate,
@@ -16,6 +17,7 @@ const Home = ({
         <Navbar
             currentUser={currentUser}
             favoriteCount={favoriteCount}
+            isAdmin={isAdmin}
             onLogout={onLogout}
             onNavigate={onNavigate}
         />
